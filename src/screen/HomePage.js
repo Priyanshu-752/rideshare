@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import {View} from 'react-native';
+
+import Signup from './SignUp';
 
 const HomePage = () => {
+  
   return (
-    <View style={styles}>
-      <Text>Home</Text>
-    </View>
+    
+<View s><Signup/></View>
+    
   )
 }
 
 export default HomePage
-
-const styles = StyleSheet.create({})
