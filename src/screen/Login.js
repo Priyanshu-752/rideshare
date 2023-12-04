@@ -5,7 +5,6 @@ import {darkGreen} from './Constants';
 import Field from './Field';
 import { useNavigation } from '@react-navigation/native';
 
-
 export default function Login() {
 
   const navigation = useNavigation();
