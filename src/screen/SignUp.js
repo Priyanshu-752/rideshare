@@ -46,7 +46,6 @@ export default function Signup() {
             keyboardType={'email-address'}
           />
           <Field placeholder="Password" secureTextEntry={true} />
-          <Field placeholder="Confirm Password" secureTextEntry={true} />
           
           <Btn
             textColor="white"
@@ -77,6 +76,5 @@ export default function Signup() {
           </View>
         </View>
       </View>
-  
   );
 }

@@ -9,12 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function Login() {
 
   const navigation = useNavigation();
-
-
-
   return (
-  
-    <View style={{alignItems: 'center', width: 400}}>
+    <View style={{flex:1, alignItems: 'center'}}>
     <Text
       style={{
         color: 'black',

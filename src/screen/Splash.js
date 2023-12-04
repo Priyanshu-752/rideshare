@@ -2,26 +2,23 @@ import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import * as Animatable from 'react-native-animatable';
 
+// eslint-disable-next-line react/prop-types
 const Splash = ({navigation}) => {
   useEffect(()=>{
     setTimeout(()=>{
+     // eslint-disable-next-line react/prop-types
      navigation.navigate('Home');
     },2000)
   },[])
 
   return (
     <View
-      style={{
-        backgroundColor: 'black',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      style={styles.container}>
       <Animatable.Text
         style={{color: 'white', fontSize: 36, fontWeight: '800'}}
         duration={2000}
         animation="fadeInDownBig">
-        Splash
+        USK
       </Animatable.Text>
     </View>
   );
@@ -29,4 +26,11 @@ const Splash = ({navigation}) => {
 
 export default Splash;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor: 'black',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
