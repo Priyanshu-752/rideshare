@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Verification = () => {
+const Otp = () => {
   return (
     <View style={styles}>
       <Text>Verification</Text>
@@ -9,6 +9,6 @@ const Verification = () => {
   )
 }
 
-export default Verification
+export default Otp
 
 const styles = StyleSheet.create({})

@@ -7,7 +7,7 @@ const Splash = ({navigation}) => {
   useEffect(()=>{
     setTimeout(()=>{
      // eslint-disable-next-line react/prop-types
-     navigation.navigate('Home');
+     navigation.navigate('HomePage');
     },2000)
   },[])
 

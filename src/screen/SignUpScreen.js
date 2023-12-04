@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import Btn from './Btn';
-import {darkGreen} from './Constants';
-import Field from './Field';
+import Btn from '../utilities/Btn';
+import {darkGreen} from '../utilities/Constants';
+import Field from '../utilities/Field';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Signup() {
@@ -53,7 +53,7 @@ export default function Signup() {
             btnLabel="Register"
             Press={() => {
               alert('Account created');
-              ('Login');
+              ('LoginScreen');
             
             }}
           />
@@ -67,7 +67,7 @@ export default function Signup() {
               Already have an account ?{' '}
             </Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Login')}>
+              onPress={() => navigation.navigate('LoginScreen')}>
               <Text
                 style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
                 Login

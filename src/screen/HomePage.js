@@ -1,14 +1,19 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
-import Signup from './SignUp';
+// import Signup from './SignUpScreen';
 
 const HomePage = () => {
   
   return (
     
-<View s><Signup/></View>
-    
+<View>
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text
+                onPress={() => alert('This is the "Home" screen.')}
+                style={{ fontSize: 26, fontWeight: 'bold' }}>Home Screen</Text>
+        </View>
+</View>
   )
 }
 
