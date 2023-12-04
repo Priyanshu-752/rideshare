@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import React from 'react';
-import {View, Text,  TouchableOpacity} from 'react-native';
+import {View, Text,  TouchableOpacity, Image} from 'react-native';
 import Btn from './Btn';
 import {darkGreen} from './Constants';
 import Field from './Field';
@@ -19,10 +20,9 @@ export default function Login() {
       }}>
       Welcome Back
     </Text>
-    {/* <View>
-
-    <Image source={require('../assets')} />
-    </View> */}
+    <View>
+    <Image source={require('../Images/shape.png')} />
+    </View>
     <View
       style={{
 
