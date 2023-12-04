@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import {View, Text,  TouchableOpacity, Image} from 'react-native';
+import {View, Text,  TouchableOpacity, Image, StyleSheet} from 'react-native';
 import Btn from './Btn';
 import {darkGreen} from './Constants';
 import Field from './Field';
@@ -12,26 +12,14 @@ export default function Login() {
   return (
     <View style={{flex:1, alignItems: 'center'}}>
     <Text
-      style={{
-        color: 'black',
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginTop: 120,
-      }}>
+      style={styles.text1}>
       Welcome Back
     </Text>
     <View>
     <Image source={require('../Images/shape.png')} />
     </View>
     <View
-      style={{
-
-        height: 700,
-        width: '100%',
-        paddingTop: 50,
-        alignItems: 'center',
-      }}>
-      
+      style={styles.Cont}>
       <Field
         placeholder="Email"
         keyboardType={'email-address'}
@@ -52,3 +40,18 @@ export default function Login() {
   
   );
 }
+
+const styles = StyleSheet.create({
+    Cont:{
+      height: 700,
+      width: '100%',
+      paddingTop: 50,
+      alignItems: 'center',
+    },
+    text1:{
+      color: 'black',
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginTop: 120,
+    }
+})
