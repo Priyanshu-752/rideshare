@@ -1,10 +1,11 @@
 import React from 'react';
-import Navigation from './src/Navigation/Navigation.js';
-// import BottomNav from './src/Navigation/BottomNav.js';
+import Navigation from './src/Navigators/Navigation.js';
+// import Bottom from './src/Navigators/Bottom.js';
 
 const App = () => {
   return (
    <Navigation/>
+//  <Bottom/>
   );
 };
  

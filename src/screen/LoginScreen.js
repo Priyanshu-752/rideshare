@@ -17,13 +17,15 @@ export default function Login() {
       <View style={styles.V2}>
         <Field placeholder="Email" keyboardType={'email-address'} />
         <Field placeholder="Enter Password" secureTextEntry={true} />
-        <Text style={styles.text2}>Forgot Password ?</Text>
+        <Text style={styles.text2} >Forgot Password ?</Text>
+
         <Btn
           textColor="white"
           bgColor={darkGreen}
           btnLabel="Login"
-          Press={() => alert('Logged In')}
+          Press={()=> navigation.navigate('Bottom')}
         />
+        
         <View style={styles.V3}>
           <Text style={styles.text3}>Do not have an account ? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
