@@ -7,7 +7,7 @@ const Splash = ({navigation}) => {
   useEffect(()=>{
     setTimeout(()=>{
      // eslint-disable-next-line react/prop-types
-     navigation.navigate('SignUpScreen');
+     navigation.navigate('MobileNumber');
     },2000)
   },[])
 

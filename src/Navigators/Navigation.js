@@ -7,6 +7,7 @@ import SignUpScreen from '../screen/SignUpScreen';
 import SplashScreen from '../screen/SplashScreen';
 import LoginScreen from '../screen/LoginScreen';
 import Bottom from './Bottom';
+import MobileNumberScreen from '../screen/MobileNumberScreen';
 
 
 
@@ -16,6 +17,7 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator  initialRouteName={'SplashScreen'} screenOptions={{headerShown:false}} >
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="MobileNumber" component={MobileNumberScreen} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="Bottom" component={Bottom} />
