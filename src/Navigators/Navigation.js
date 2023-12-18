@@ -8,8 +8,7 @@ import SplashScreen from '../screen/SplashScreen';
 import LoginScreen from '../screen/LoginScreen';
 import Bottom from './Bottom';
 import MobileNumberScreen from '../screen/MobileNumberScreen';
-
-
+import OptScreen from '../screen/OtpScreen';
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -18,9 +17,12 @@ function Navigation() {
       <Stack.Navigator  initialRouteName={'SplashScreen'} screenOptions={{headerShown:false}} >
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="MobileNumber" component={MobileNumberScreen} />
+      <Stack.Screen name="OtpScreen" component={OptScreen} />
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="Bottom" component={Bottom} />
+
+
       
       </Stack.Navigator>
     </NavigationContainer>

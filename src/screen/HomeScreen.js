@@ -10,10 +10,10 @@ const {height,width} = Dimensions.get('window')
 const HomeScreen = () => {
   return (
     <View style ={styles.container}>
-    <View style ={styles.header}>
+    {/* <View style ={styles.header}>
             <Text style={styles.text0}>UBER</Text>
         
-    </View>
+    </View> */}
     <ScrollView bounces ={false}>
         <View style ={styles.home}>
             <Text style = {styles.text1}>Destress your commute</Text>
@@ -38,7 +38,7 @@ const HomeScreen = () => {
 
             <View style ={styles.view3}>
             <Icon type = "material-community"
-                        name ="search"
+                        name ="map-search-outline"
                         color = {colors.grey1}
                         size = {26}
                         marginLeft={20}

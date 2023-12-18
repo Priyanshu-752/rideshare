@@ -27,7 +27,7 @@ const MobileNumberScreen = () => {
       }}
       />
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUpScreen')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('OtpScreen')}>
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
     </View>
@@ -65,17 +65,17 @@ const styles = StyleSheet.create({
     button:{
         marginTop:40,
         marginLeft:100,
-        backgroundColor: '#286ef0',
+        backgroundColor: '#26D8D1',
         paddingBottom: 8,
         paddingHorizontal:60,
-        borderRadius:10,
+        borderRadius:8,
         marginBottom:-10,
         
     },
     buttonText:{
-        color:"black",
-        fontSize:20,
-        fontWeight:"500",
+        color:"white",
+        fontSize:22,
+        fontWeight:"600",
         paddingTop:6
     }
 })
