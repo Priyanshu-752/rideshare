@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import * as React from 'react';
 import { View,Text, SafeAreaView,Image,TouchableOpacity,StyleSheet, } from 'react-native';
   import Icon from 'react-native-vector-icons/MaterialCommunityIcons';

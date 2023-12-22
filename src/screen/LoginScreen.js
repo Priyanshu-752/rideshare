@@ -1,29 +1,99 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Btn from '../utilities/Btn';
 import { darkGreen } from '../utilities/Constants';
 import Field from '../utilities/Field';
-import { useNavigation } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
 
 export default function Login() {
   const navigation = useNavigation();
+
+  const [Email, setEmail]= useState("");
+  const [chEmail, setchEmail] = useState(true);
+  const [errEmail, seterrEmail] = useState("");
+
+  const [Password, setPassword]= useState("");
+  const [chPassword, setchPassword] = useState(true);
+  const [errPassword, seterrPassword] = useState("");
+
+  const validateEmail = () => {
+    var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // Improved email regex
+    var email = Email.trim(); // Corrected variable name to 'email' (lowercase)
+  
+    if (email === "" || email === undefined || email === null) {
+      seterrEmail("*Please enter the email.");
+      setchEmail(false);
+      return false;
+    } else if (!emailRegex.test(email)) { // Corrected method to 'test' instead of 'text'
+      seterrEmail("*Please enter a valid Email Address. ");
+      setchEmail(false);
+      return false;
+    } else {
+      seterrEmail("");
+      setchEmail(true);
+      return true;
+    }
+  };
+  
+
+  const validatePassword =()=> {
+    var passwordRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    var password = Password.trim();
+    if (password == "" || password == undefined || password == null){
+      seterrPassword("*Please enter password.");
+      setchPassword(false);
+      return false;
+    }
+    else if (!passwordRegex.test(password)) {
+      seterrPassword("*Please enter valid password. ");
+      setchPassword(false);
+      return false;
+    }
+    else{
+      seterrPassword("");
+      setchPassword(true);
+      return true;
+    }
+  }
+
   return (
     <View style={styles.V1}>
       <Text style={styles.text1}>Welcome Back</Text>
-      <View>
+      {/* <View>
         <Image source={require('../Images/shape.png')} />
-      </View>
+      </View> */}
       <View style={styles.V2}>
-        <Field placeholder="Email" keyboardType={'email-address'} />
-        <Field placeholder="Enter Password" secureTextEntry={true} />
+        <Field placeholder="Email" keyboardType={'email-address'} 
+        onChangeText={setEmail} onEndEditing={validateEmail}/>
+
+        <View >{
+          chEmail==true ? null:<Text style={{color:'red'}}>{errEmail}</Text>
+          }</View>
+          
+        <Field placeholder="Enter Password" secureTextEntry={true} 
+        onChangeText={setPassword} onEndEditing={validatePassword}/>
+
+        <View>{
+          chPassword==true ? null:<Text style={{color:'red'}}>{errPassword}</Text>
+          }</View>
+
         <Text style={styles.text2} >Forgot Password ?</Text>
 
         <Btn
           textColor="white"
           bgColor={darkGreen}
           btnLabel="Login"
-          Press={()=> navigation.navigate('Bottom')}
+          // Press={()=> navigation.navigate('Bottom')}
+          Press={()=>{
+            if(validateEmail() && validatePassword)
+            {
+              navigation.dispatch(
+                StackActions.replace('Bottom')
+              );
+            }
+          }}
         />
         
         <View style={styles.V3}>
