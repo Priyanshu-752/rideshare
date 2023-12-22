@@ -10,10 +10,6 @@ const {height,width} = Dimensions.get('window')
 const HomeScreen = () => {
   return (
     <View style ={styles.container}>
-    {/* <View style ={styles.header}>
-            <Text style={styles.text0}>UBER</Text>
-        
-    </View> */}
     <ScrollView bounces ={false}>
         <View style ={styles.home}>
             <Text style = {styles.text1}>Destress your commute</Text>
@@ -107,7 +103,6 @@ const HomeScreen = () => {
                 <FlatList 
                 data={filterData}
                 horizontal={true}
-                // pagingEnabled={true}
                 showsHorizontalScrollIndicator={false}
                 keyExtractor = {(item)=>item.id}
                     renderItem = { ({item})=>(
