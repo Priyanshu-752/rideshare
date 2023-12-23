@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Btn from '../utilities/Btn';
 import { darkGreen } from '../utilities/Constants';
 import Field from '../utilities/Field';
-import { StackActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
   const navigation = useNavigation();
@@ -85,15 +85,15 @@ export default function Login() {
           textColor="white"
           bgColor={darkGreen}
           btnLabel="Login"
-          // Press={()=> navigation.navigate('Bottom')}
-          Press={()=>{
-            if(validateEmail() && validatePassword)
-            {
-              navigation.dispatch(
-                StackActions.replace('Bottom')
-              );
-            }
-          }}
+          Press={()=> navigation.navigate('Bottom')}
+          // Press={()=>{
+          //   if(validateEmail() && validatePassword)
+          //   {
+          //     navigation.dispatch(
+          //       StackActions.replace('Bottom')
+          //     );
+          //   }
+          // }}
         />
         
         <View style={styles.V3}>

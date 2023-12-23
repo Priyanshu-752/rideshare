@@ -22,14 +22,14 @@ export default function Signup() {
   const [errRePassword, seterrRePassword] = useState("");
 
   const validateEmail = () => {
-    var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // Improved email regex
-    var email = Email.trim(); // Corrected variable name to 'email' (lowercase)
+    var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; 
+    var email = Email.trim(); 
   
     if (email === "" || email === undefined || email === null) {
       seterrEmail("*Please enter the email.");
       setchEmail(false);
       return false;
-    } else if (!emailRegex.test(email)) { // Corrected method to 'test' instead of 'text'
+    } else if (!emailRegex.test(email)) { 
       seterrEmail("*Please enter a valid Email Address. ");
       setchEmail(false);
       return false;
