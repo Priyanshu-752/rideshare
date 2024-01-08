@@ -3,8 +3,11 @@ import * as React from 'react';
 import { View,Text, SafeAreaView,Image,TouchableOpacity,StyleSheet, } from 'react-native';
   import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
   import Share from 'react-native-share';
+  import { useNavigation } from '@react-navigation/native';
 
 const AccountScreen =() => {
+
+  const navigation = useNavigation();
 
     const myCustomShare = async() => {
         const shareOptions = {
@@ -32,7 +35,10 @@ const AccountScreen =() => {
               }]}>John Doe</Text>
               <Text style={styles.caption}>@Roopam Da</Text>
             </View>
+            <TouchableOpacity onPress={() => navigation.navigate('EditProfileScreen')} >
+
               <Image source={ require('../Images/ride.png')} style={styles.Image} />
+            </TouchableOpacity>
           </View>
         </View>
   

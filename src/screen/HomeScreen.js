@@ -7,20 +7,19 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const {height,width} = Dimensions.get('window')
 
 
+
 const HomeScreen = () => {
   return (
     <View style ={styles.container}>
     <ScrollView bounces ={false}>
         <View style ={styles.home}>
-            <Text style = {styles.text1}>Destress your commute</Text>
             <View style ={styles.view1}>
+            <Text style = {styles.text1}>Welcome to Rideshare</Text>
                 <View  style ={styles.view8}>
-                    <Text style ={styles.text2}>Read a book.Take a nap. Stare out the window</Text>
-                    {/* <TouchableOpacity onPress ={()=>{navigation.navigate("map")}> */}
-                        <View style ={styles.button1}>
-                            <Text style = {styles.button1Text}>Ride with Uber</Text>
-                        </View>
-                    {/* </TouchableOpacity> */}
+
+                    
+                        
+                    
                 </View>
                 <View>
                     <Image 
@@ -31,6 +30,20 @@ const HomeScreen = () => {
                 </View>
             </View>
         </View>
+        <FlatList 
+                data={filterData}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor = {(item)=>item.id}
+                    renderItem = { ({item})=>(
+                  
+                  <View style={{marginRight:15}}>
+                          <Image style={styles.sliderImage} source={item.image}/>    
+                        </View>
+                      
+                )}
+                
+                />
 
             <View style ={styles.view3}>
             <Icon type = "material-community"
@@ -132,6 +145,15 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     color:'blue'
   },
+  sliderImage:{
+width:240,
+height:120,
+borderRadius:20,
+marginLeft:20,
+objectFit:'contain',
+marginTop:20
+  },
+
   text0:{
     fontSize:30,
     fontWeight:'bold',

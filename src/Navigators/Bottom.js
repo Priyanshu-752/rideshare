@@ -7,7 +7,6 @@ import AccountScreen from '../screen/AccountScreen';
 import ServicesScreen from '../screen/ServicesScreen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
 const Tab = createBottomTabNavigator();
 export default function Bottom() {
   return (

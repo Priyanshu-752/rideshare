@@ -9,6 +9,8 @@ import LoginScreen from '../screen/LoginScreen';
 import Bottom from './Bottom';
 import MobileNumberScreen from '../screen/MobileNumberScreen';
 import OptScreen from '../screen/OtpScreen';
+import EditProfileScreen from '../screen/EditProfileScreen';
+
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -21,9 +23,7 @@ function Navigation() {
       <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="Bottom" component={Bottom} />
-
-
-      
+      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />  
       </Stack.Navigator>
     </NavigationContainer>
   );
