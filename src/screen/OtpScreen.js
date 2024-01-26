@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -16,7 +16,7 @@ const Otp = (
   const secondInput = useRef();
   const thirdInput = useRef();
   const fourthInput = useRef();
-  const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: ''});
+  const [otp, setOtp] = useState({ 1: '', 2: '', 3: '', 4: '' });
   const navigation = useNavigation();
 
   return (
@@ -26,7 +26,7 @@ const Otp = (
         backgroundColor="white"
         translucent
       />
-      
+
       <Text style={styles.title}>OTP Verification</Text>
       <Text style={styles.content}>
         Enter the OTP number just sent you at{' '}
@@ -40,7 +40,7 @@ const Otp = (
             maxLength={1}
             ref={firstInput}
             onChangeText={text => {
-              setOtp({...otp, 1: text});
+              setOtp({ ...otp, 1: text });
               text && secondInput.current.focus();
             }}
           />
@@ -52,7 +52,7 @@ const Otp = (
             maxLength={1}
             ref={secondInput}
             onChangeText={text => {
-              setOtp({...otp, 2: text});
+              setOtp({ ...otp, 2: text });
               text ? thirdInput.current.focus() : firstInput.current.focus();
             }}
           />
@@ -64,7 +64,7 @@ const Otp = (
             maxLength={1}
             ref={thirdInput}
             onChangeText={text => {
-              setOtp({...otp, 3: text});
+              setOtp({ ...otp, 3: text });
               text ? fourthInput.current.focus() : secondInput.current.focus();
             }}
           />
@@ -76,7 +76,7 @@ const Otp = (
             maxLength={1}
             ref={fourthInput}
             onChangeText={text => {
-              setOtp({...otp, 4: text});
+              setOtp({ ...otp, 4: text });
               !text && thirdInput.current.focus();
             }}
           />
@@ -97,12 +97,12 @@ const Otp = (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"white",
+    backgroundColor: "white",
   },
-  
+
   title: {
     fontSize: 25,
-    fontWeight:'600',
+    fontWeight: '600',
     lineHeight: 20 * 1.4,
     marginTop: 100,
     marginBottom: 10,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 18 * 1.4,
     color: "#26D8D1",
-    fontWeight:'500',
+    fontWeight: '500',
   },
   otpContainer: {
     marginHorizontal: 20,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 10,
   },
-  resend:{
+  resend: {
     fontSize: 16,
     marginTop: 20,
     marginBottom: 20,
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     lineHeight: 18 * 1.4,
     color: "white",
-    fontWeight:'600',
-    
+    fontWeight: '600',
+
   },
 });
 

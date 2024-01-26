@@ -1,11 +1,9 @@
 import React from 'react';
-import Navigation from './src/Navigators/Navigation.js';
-// import Bottom from './src/Navigators/Bottom.js';
+import Navigation from './src/Navigators/Navigation';
 
 const App = () => {
   return (
-   <Navigation/>
-//  <Bottom/>
+    <Navigation/>
   );
 };
  

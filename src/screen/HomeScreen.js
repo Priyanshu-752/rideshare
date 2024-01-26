@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Image, FlatList, StatusBar, Dimensions, Touchable, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, FlatList, StatusBar, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../utilities/Constants'
@@ -42,28 +42,28 @@ const HomeScreen = () => {
           )}
         />
         <TouchableOpacity onPress={proceedToMapScreen}>
-        <View style={styles.view3}>
-          <Icon type="material-community"
-            name="map-search-outline"
-            color={colors.grey1}
-            size={26}
-            marginLeft={20}
-          />
-          <Text style={styles.text3}> Where to ?</Text>
-          <View style={styles.view4}>
+          <View style={styles.view3}>
             <Icon type="material-community"
-              name="clock-time-four"
+              name="map-search-outline"
               color={colors.grey1}
               size={26}
+              marginLeft={20}
             />
-            <Text style={{ marginLeft: 5 }}>Now</Text>
-            <Icon type="material-community"
-              name="chevron-down"
-              color={colors.grey1}
-              size={26}
-            />
+            <Text style={styles.text3}> Where to ?</Text>
+            <View style={styles.view4}>
+              <Icon type="material-community"
+                name="clock-time-four"
+                color={colors.grey1}
+                size={26}
+              />
+              <Text style={{ marginLeft: 5 }}>Now</Text>
+              <Icon type="material-community"
+                name="chevron-down"
+                color={colors.grey1}
+                size={26}
+              />
+            </View>
           </View>
-        </View>
         </TouchableOpacity>
         <View style={styles.view5}>
           <View style={styles.view6}>

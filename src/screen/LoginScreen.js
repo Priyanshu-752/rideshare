@@ -10,18 +10,18 @@ import { useNavigation } from '@react-navigation/native';
 export default function Login() {
   const navigation = useNavigation();
 
-  const [Email, setEmail]= useState("");
+  const [Email, setEmail] = useState("");
   const [chEmail, setchEmail] = useState(true);
   const [errEmail, seterrEmail] = useState("");
 
-  const [Password, setPassword]= useState("");
+  const [Password, setPassword] = useState("");
   const [chPassword, setchPassword] = useState(true);
   const [errPassword, seterrPassword] = useState("");
 
   const validateEmail = () => {
     var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // Improved email regex
     var email = Email.trim(); // Corrected variable name to 'email' (lowercase)
-  
+
     if (email === "" || email === undefined || email === null) {
       seterrEmail("*Please enter the email.");
       setchEmail(false);
@@ -36,12 +36,12 @@ export default function Login() {
       return true;
     }
   };
-  
 
-  const validatePassword =()=> {
+
+  const validatePassword = () => {
     var passwordRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
     var password = Password.trim();
-    if (password == "" || password == undefined || password == null){
+    if (password == "" || password == undefined || password == null) {
       seterrPassword("*Please enter password.");
       setchPassword(false);
       return false;
@@ -51,7 +51,7 @@ export default function Login() {
       setchPassword(false);
       return false;
     }
-    else{
+    else {
       seterrPassword("");
       setchPassword(true);
       return true;
@@ -65,19 +65,19 @@ export default function Login() {
         <Image source={require('../Images/shape.png')} />
       </View> */}
       <View style={styles.V2}>
-        <Field placeholder="Email" keyboardType={'email-address'} 
-        onChangeText={setEmail} onEndEditing={validateEmail}/>
+        <Field placeholder="Email" keyboardType={'email-address'}
+          onChangeText={setEmail} onEndEditing={validateEmail} />
 
         <View >{
-          chEmail==true ? null:<Text style={{color:'red'}}>{errEmail}</Text>
-          }</View>
-          
-        <Field placeholder="Enter Password" secureTextEntry={true} 
-        onChangeText={setPassword} onEndEditing={validatePassword}/>
+          chEmail == true ? null : <Text style={{ color: 'red' }}>{errEmail}</Text>
+        }</View>
+
+        <Field placeholder="Enter Password" secureTextEntry={true}
+          onChangeText={setPassword} onEndEditing={validatePassword} />
 
         <View>{
-          chPassword==true ? null:<Text style={{color:'red'}}>{errPassword}</Text>
-          }</View>
+          chPassword == true ? null : <Text style={{ color: 'red' }}>{errPassword}</Text>
+        }</View>
 
         <Text style={styles.text2} >Forgot Password ?</Text>
 
@@ -85,17 +85,17 @@ export default function Login() {
           textColor="white"
           bgColor={darkGreen}
           btnLabel="Login"
-          Press={()=> navigation.navigate('Bottom')}
-          // Press={()=>{
-          //   if(validateEmail() && validatePassword)
-          //   {
-          //     navigation.dispatch(
-          //       StackActions.replace('Bottom')
-          //     );
-          //   }
-          // }}
+          Press={() => navigation.navigate('Bottom')}
+        // Press={()=>{
+        //   if(validateEmail() && validatePassword)
+        //   {
+        //     navigation.dispatch(
+        //       StackActions.replace('Bottom')
+        //     );
+        //   }
+        // }}
         />
-        
+
         <View style={styles.V3}>
           <Text style={styles.text3}>Do not have an account ? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')}>
@@ -110,9 +110,10 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
-  V1: { flex: 1,
-     alignItems: 'center'
-     },
+  V1: {
+    flex: 1,
+    alignItems: 'center'
+  },
 
   V2: {
     height: 700,
@@ -121,11 +122,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  V3: { 
+  V3: {
     display: 'flex',
-     flexDirection: 'row',
-      justifyContent: 'center' 
-    },
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
 
   text1: {
     color: 'black',
@@ -134,13 +135,15 @@ const styles = StyleSheet.create({
     marginTop: 120,
   },
 
-  text2: { color: darkGreen,
-      fontWeight: 'bold',
-      fontSize: 16,
-      marginTop: 40
-       },
-       
-  text3: { fontSize: 16,
-     fontWeight: 'bold' 
-    },
+  text2: {
+    color: darkGreen,
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginTop: 40
+  },
+
+  text3: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
 });

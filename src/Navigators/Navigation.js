@@ -17,15 +17,15 @@ const Stack = createNativeStackNavigator();
 function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator  initialRouteName={'SplashScreen'} screenOptions={{headerShown:false}} >
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="MobileNumber" component={MobileNumberScreen} />
-      <Stack.Screen name="OtpScreen" component={OptScreen} />
-      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="Bottom" component={Bottom} />
-      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />  
-      <Stack.Screen name="MapScreen" component={MapScreen}/>
+      <Stack.Navigator initialRouteName={'SplashScreen'} screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="MobileNumber" component={MobileNumberScreen} />
+        <Stack.Screen name="OtpScreen" component={OptScreen} />
+        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="Bottom" component={Bottom} />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+        <Stack.Screen name="MapScreen" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

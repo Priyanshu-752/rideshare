@@ -16,68 +16,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-// import BottomSheet from 'reanimated-bottom-sheet';
-
 const EditProfileScreen = () => {
-//   const [image, setImage] = useState('https://api.adorable.io/avatars/80/abott@adorable.png');
   const { colors } = useTheme();
-//   const bs = useRef(null);
-//   const fall = new Animated.Value(1);
-
-//   const takePhotoFromCamera = () => {
-   
-//   };
-
-//   const choosePhotoFromLibrary = () => {
-   
-//   };
-
-//   const renderInner = () => (
-//     <View style={styles.panel}>
-//       <View style={{ alignItems: 'center' }}>
-//         <Text style={styles.panelTitle}>Upload Photo</Text>
-//         <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
-//       </View>
-//       <TouchableOpacity style={styles.panelButton} onPress={takePhotoFromCamera}>
-//         <Text style={styles.panelButtonTitle}>Take Photo</Text>
-//       </TouchableOpacity>
-//       <TouchableOpacity style={styles.panelButton} onPress={choosePhotoFromLibrary}>
-//         <Text style={styles.panelButtonTitle}>Choose From Library</Text>
-//       </TouchableOpacity>
-//       <TouchableOpacity
-//         style={styles.panelButton}
-//         onPress={() => bs.current.snapTo(1)}>
-//         <Text style={styles.panelButtonTitle}>Cancel</Text>
-//       </TouchableOpacity>
-//     </View>
-//   );
-
-//   const renderHeader = () => (
-//     <View style={styles.header}>
-//       <View style={styles.panelHeader}>
-//         <View style={styles.panelHandle} />
-//       </View>
-//     </View>
-//   );
-
   return (
     <View style={styles.container}>
-      {/* <BottomSheet
-        ref={bs}
-        snapPoints={[330, 0]}
-        renderContent={renderInner}
-        renderHeader={renderHeader}
-        initialSnap={1}
-        callbackNode={fall}
-        enabledGestureInteraction={true}
-      /> */}
       <Animated.View
         style={{
           margin: 20,
-        //   opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
         }}
       >
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <TouchableOpacity >
             <View
               style={{
@@ -88,9 +36,9 @@ const EditProfileScreen = () => {
                 alignItems: 'center',
               }}>
               <ImageBackground
-                source={ require('../Images/ride.png')}
-                style={{height: 100, width: 100}}
-                imageStyle={{borderRadius: 15}}>
+                source={require('../Images/ride.png')}
+                style={{ height: 100, width: 100 }}
+                imageStyle={{ borderRadius: 15 }}>
                 <View
                   style={{
                     flex: 1,
@@ -114,7 +62,7 @@ const EditProfileScreen = () => {
               </ImageBackground>
             </View>
           </TouchableOpacity>
-          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>
+          <Text style={{ marginTop: 10, fontSize: 18, fontWeight: 'bold' }}>
             John Doe
           </Text>
         </View>
@@ -205,7 +153,7 @@ const EditProfileScreen = () => {
             ]}
           />
         </View>
-        <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.commandButton} onPress={() => { }}>
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
       </Animated.View>
@@ -240,7 +188,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#FFFFFF',
     shadowColor: '#333333',
-    shadowOffset: {width: -1, height: -3},
+    shadowOffset: { width: -1, height: -3 },
     shadowRadius: 2,
     shadowOpacity: 0.4,
     // elevation: 5,
