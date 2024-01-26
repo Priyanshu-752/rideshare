@@ -1,7 +1,5 @@
-
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screen/HomeScreen';
 import AccountScreen from '../screen/AccountScreen';
 import ServicesScreen from '../screen/ServicesScreen';
@@ -10,8 +8,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const Tab = createBottomTabNavigator();
 export default function Bottom() {
   return (
-    <NavigationContainer>
-
     <Tab.Navigator  screenOptions={{headerShown:false}}>
     <Tab.Screen name="HomeScreen" component={HomeScreen} options={{
           tabBarLabel: 'Home',
@@ -33,6 +29,5 @@ export default function Bottom() {
         }}/>
 
   </Tab.Navigator>
-    </NavigationContainer>
   )
 }
