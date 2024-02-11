@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, ScrollView, Image, FlatList, StatusBar, Dimensions, Touchable, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, ScrollView, Image, FlatList, StatusBar, Dimensions, TouchableOpacity,Alert, BackHandler } from 'react-native'
+import React , {useEffect} from 'react';
+
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../utilities/Constants'
 import { filterData } from '../utilities/data'
@@ -8,6 +9,39 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const { height, width } = Dimensions.get('window')
 
 const HomeScreen = () => {
+
+  const handleBackPress = () => {
+    // Show exit confirmation dialog only for AccountScreen
+    if (navigation.isFocused()) {
+      Alert.alert(
+        'Exit App',
+        'Are you sure you want to exit?',
+        [{
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel'
+        }, {
+          text: 'Exit',
+          onPress: () => BackHandler.exitApp(),
+        }]
+      );
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    // Add back press event listener when the screen is focused
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+    // Remove back press event listener when the screen is unfocused
+    return () => {
+      backHandler.remove();
+    };
+  }, []);
+
+
+
   const navigation = useNavigation();
 
   const proceedToMapScreen = () => {

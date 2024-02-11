@@ -1,80 +1,98 @@
 import React, { useState } from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import Btn from '../utilities/Btn';
-import {darkGreen} from '../utilities/Constants';
+import { darkGreen } from '../utilities/Constants';
 import Field from '../utilities/Field';
 import { useNavigation } from '@react-navigation/native';
+import Feather from 'react-native-vector-icons/Feather';
+import axios from 'axios';
 
 export default function Signup() {
 
-  const navigation = useNavigation();
-
-  const [Email, setEmail]= useState("");
-  const [chEmail, setchEmail] = useState(true);
-  const [errEmail, seterrEmail] = useState("");
-
-  const [Password, setPassword]= useState("");
-  const [chPassword, setchPassword] = useState(true);
-  const [errPassword, seterrPassword] = useState("");
-
-  const [rePassword, setrePassword]= useState("");
+  const [name, setName] = useState('');
+  const [nameVerify, setNameVerify] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailVerify, setEmailVerify] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordVerify, setPasswordVerify] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const [rePassword, setrePassword] = useState("");
   const [chrePassword, setchrePassword] = useState(true);
   const [errRePassword, seterrRePassword] = useState("");
-
-  const validateEmail = () => {
-    var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; 
-    var email = Email.trim(); 
+    
+  const navigation = useNavigation();
   
-    if (email === "" || email === undefined || email === null) {
-      seterrEmail("*Please enter the email.");
-      setchEmail(false);
-      return false;
-    } else if (!emailRegex.test(email)) { 
-      seterrEmail("*Please enter a valid Email Address. ");
-      setchEmail(false);
-      return false;
-    } else {
-      seterrEmail("");
-      setchEmail(true);
-      return true;
-    }
-  };
+  function handelSubmit() {
+    const userData = {
+      name: name,
+      email,
+      password,
+    };
+    if (nameVerify && emailVerify && passwordVerify ) {
+      axios
+        .post('http://192.168.29.137:3000/register', userData)
+        .then(res => {
+          console.log(res.data);
+          if (res.data.status == 'ok') {
+            Alert.alert('Registered Successfull!!');
+            navigation.navigate('LoginScreen');
+          } 
+          else {
+            Alert.alert(JSON.stringify(res.data));
+          }
+        })
   
-
-  const validatePassword =()=> {
-    var passwordRegex = /^(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
-    var password = Password.trim();
-    if (password == "" || password == undefined || password == null){
-      seterrPassword("*Please enter password.");
-      setchPassword(false);
-      return false;
-    }
-    else if (!passwordRegex.test(password)) {
-      seterrPassword("*Please enter valid password. ");
-      setchPassword(false);
-      return false;
-    }
-    else{
-      seterrPassword("");
-      setchPassword(true);
-      return true;
+        .catch(e => console.log(e));
+    } 
+    else {
+      Alert.alert('Fill mandatory details');
     }
   }
 
-  const validateRepassword=()=>{
-    var rePass=rePassword.trim();
-    if(rePass=="" || rePass==undefined || rePass==null){
+  function handleName(e) {
+    const nameVar = e.nativeEvent.text;
+    setName(nameVar);
+    setNameVerify(false);
+    
+    if (nameVar.length > 1) {
+      setNameVerify(true);
+    }
+  }
+  
+  function handleEmail(e) {
+    const emailVar = e.nativeEvent.text;
+    setEmail(emailVar);
+    setEmailVerify(false);
+    if (/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/.test(emailVar)) {
+      setEmail(emailVar);
+      setEmailVerify(true);
+    }
+  }
+
+  function handlePassword(e) {
+    const passwordVar = e.nativeEvent.text;
+    setPassword(passwordVar);
+    setPasswordVerify(false);
+    if (/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(passwordVar)) {
+      setPassword(passwordVar);
+      setPasswordVerify(true);
+    }
+  }
+  
+  const validateRepassword = () => {
+    var rePass = rePassword.trim();
+    if (rePass == "" || rePass == undefined || rePass == null) {
       setchrePassword(false);
       seterrRePassword("*Please Enter password again");
       return false;
     }
-    else if(rePass!=Password)
-    {
+    else if (rePass != password) {
       setchrePassword(false);
       seterrRePassword("*Password and Repassword must be same");
       return false;
     }
-    else(rePass==Password)
+    else (rePass == password)
     {
       setchrePassword(true);
       seterrRePassword("");
@@ -82,9 +100,11 @@ export default function Signup() {
     }
   }
 
+
   return (
-   
-      <View style={{alignItems: 'center', width: 400}}>
+    <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={'always'}>
+
+      <View style={{ alignItems: 'center', width: 400 }}>
         <Text
           style={{
             color: 'black',
@@ -106,53 +126,104 @@ export default function Signup() {
         </Text>
         <View
           style={{
-  
+
             height: 700,
             width: '100%',
             paddingTop: 50,
             alignItems: 'center',
           }}>
-          <Field placeholder="Full Name" />
-          
+
+          <Field
+              placeholder="Name"
+              onChange={e => handleName(e)}
+              
+            />
+            {name.length < 1 ? null : nameVerify ? null : (
+            <Text
+              style={{
+                marginLeft: 20,
+                color: 'red',
+              }}>
+              Name should be more then 1 characters.
+            </Text>
+              )}
+            
           <Field
             placeholder="Email"
             keyboardType={'email-address'}
-            onChangeText={setEmail} 
-            onEndEditing={validateEmail}
+            onChange={e => handleEmail(e)}
           />
-         <View>{
-          chEmail==true ? null:<Text style={{color:'red'}}>{errEmail}</Text>
-          }</View>
+           {email.length < 1 ? null : emailVerify ? null : (
+            <Text
+              style={{
+                marginLeft: 20,
+                color: 'red',
+              }}>
+              Enter Proper Email Address
+            </Text>
+          )}
 
-          <Field 
-          placeholder="Password" 
-          secureTextEntry={true}
-          onChangeText={setPassword}
-          onEndEditing={validatePassword} />
+          <Field
+            placeholder="Password"
+            onChange={e => handlePassword(e)}
+              secureTextEntry={showPassword}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          {password.length<1?null:showPassword?
+            <Feather
+              name='eye-off'
+              style={{ marginStart: 230, marginTop: -49 }}
+              color={darkGreen}
+              size={20} 
+              />:<Feather
+              name='eye'
+              style={{ marginStart: 230, marginTop: -49 }}
+              color={darkGreen}
+              size={20} 
+              />
+            
+          }
+          </TouchableOpacity>
+          {password.length < 1 ? null : passwordVerify ? null : (
+            <Text
+              style={{
+                marginLeft: 20,
+                color: 'red',
+              }}>
+              Uppercase, Lowercase, Number and 6 or more characters.
+            </Text>
+          )}
 
+
+          <Field placeholder="Confirm Password"
+            secureTextEntry={showPassword}
+            onChangeText={setrePassword}
+            onEndEditing={validateRepassword} />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            {password.length<1?null:showPassword?
+            <Feather
+              name='eye-off'
+              style={{ marginStart: 230, marginTop: -49 }}
+              color={darkGreen}
+              size={20} 
+              />:<Feather
+              name='eye'
+              style={{ marginStart: 230, marginTop: -49 }}
+              color={darkGreen}
+              size={20} 
+              />
+            
+          }
+          </TouchableOpacity>
           <View>{
-          chPassword==true ? null:<Text style={{color:'red'}}>{errPassword}</Text>
+            chrePassword == true ? null : <Text style={{ color: 'red' }}>{errRePassword}</Text>
           }</View>
 
-          <Field placeholder="Confirm Password" 
-          secureTextEntry={true} 
-          onChangeText={setrePassword}
-          onEndEditing={validateRepassword}/>
-          <View>{
-          chrePassword==true ? null:<Text style={{color:'red'}}>{errRePassword}</Text>
-          }</View>
-          
           <Btn
             textColor="white"
             bgColor={darkGreen}
             btnLabel="Register"
-            Press={()=>{
-              if(validateEmail() && validatePassword() && validateRepassword())
-              {
-                alert('Account created');
-                   navigation.navigate('LoginScreen');
-              }
-            }}
+            Press={() => handelSubmit()}
           />
           <View
             style={{
@@ -160,18 +231,19 @@ export default function Signup() {
               flexDirection: 'row',
               justifyContent: 'center',
             }}>
-            <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
               Already have an account ?{' '}
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('LoginScreen')}>
               <Text
-                style={{color: darkGreen, fontWeight: 'bold', fontSize: 16}}>
+                style={{ color: darkGreen, fontWeight: 'bold', fontSize: 16 }}>
                 Login
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
+    </ScrollView>
   );
 }

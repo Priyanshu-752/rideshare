@@ -1,27 +1,83 @@
 /* eslint-disable no-undef */
-import * as React from 'react';
-import { View,Text, SafeAreaView,Image,TouchableOpacity,StyleSheet, } from 'react-native';
+import React , {useEffect, useState} from 'react';
+import { View,Text, SafeAreaView,Image,TouchableOpacity,StyleSheet} from 'react-native';
   import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
   import Share from 'react-native-share';
   import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
-const AccountScreen =() => {
-
+const AccountScreen = () => {
   const navigation = useNavigation();
+  const [userData, setUserData] = useState('');
 
-    const myCustomShare = async() => {
-        const shareOptions = {
-          message: 'Order your next ride from Uber App.',
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
-        }
-    
-        try {
-          const ShareResponse = await Share.open(shareOptions);
-          console.log(JSON.stringify(ShareResponse));
-        } catch(error) {
-          console.log('Error => ', error);
-        }
-      };
+  // const handleBackPress = () => {
+  //   // Show exit confirmation dialog only for AccountScreen
+  //   if (navigation.isFocused()) {
+  //     Alert.alert(
+  //       'Exit App',
+  //       'Are you sure you want to exit?',
+  //       [{
+  //         text: 'Cancel',
+  //         onPress: () => null,
+  //         style: 'cancel'
+  //       }, {
+  //         text: 'Exit',
+  //         onPress: () => BackHandler.exitApp(),
+  //       }]
+  //     );
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  // useEffect(() => {
+  //   // Add back press event listener when the screen is focused
+  //   const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+  //   // Remove back press event listener when the screen is unfocused
+  //   return () => {
+  //     backHandler.remove();
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const token = await AsyncStorage.getItem('token');
+    console.log(token);
+    axios.post('http://192.168.29.137:3000/userdata', { token: token })
+      .then(res => {
+        console.log(res.data);
+        setUserData(res.data.data);
+      });
+  };
+
+  const myCustomShare = async () => {
+    const shareOptions = {
+      message: 'Order your next ride from Uber App.',
+    };
+
+    try {
+      const ShareResponse = await Share.open(shareOptions);
+      console.log(JSON.stringify(ShareResponse));
+    } catch (error) {
+      console.log('Error => ', error);
+    }
+  };
+
+  const signOut = () => {
+    AsyncStorage.setItem('isLoggedIn', '');
+    AsyncStorage.setItem('token', '');
+    navigation.navigate('LogNav');
+  };
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -32,8 +88,8 @@ const AccountScreen =() => {
               <Text style={[styles.title, {
                 marginTop:15,
                 marginBottom: 5,
-              }]}>John Doe</Text>
-              <Text style={styles.caption}>@Roopam Da</Text>
+              }]}>{userData.name}</Text>
+              <Text style={styles.caption}>{userData.email}</Text>
             </View>
             <TouchableOpacity onPress={() => navigation.navigate('EditProfileScreen')} >
 
@@ -96,6 +152,12 @@ const AccountScreen =() => {
             <View style={styles.menuItem}>
               <Icon name="security" color="#26D8D1" size={25}/>
               <Text style={styles.menuItemText}>Settings</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => signOut()}>
+            <View style={styles.menuItem}>
+              <Icon name="exit-to-app" color="#26D8D1" size={25}/>
+              <Text style={styles.menuItemText}>Log Out</Text>
             </View>
           </TouchableOpacity>
         </View>
