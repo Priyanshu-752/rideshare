@@ -4,6 +4,8 @@ import React , {useEffect} from 'react';
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../utilities/Constants'
 import { filterData } from '../utilities/data'
+import { Banners } from '../utilities/data';
+import { Category } from '../utilities/data';
 import { useNavigation } from '@react-navigation/native'
 const SCREEN_WIDTH = Dimensions.get('window').width
 const { height, width } = Dimensions.get('window')
@@ -65,7 +67,7 @@ const HomeScreen = () => {
           </View>
         </View>
         <FlatList
-          data={filterData}
+          data={Banners}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id}
@@ -146,7 +148,7 @@ const HomeScreen = () => {
           <View >
             <Text style={{ color: 'black', fontSize: 20, fontWeight: "500", marginLeft: 20, marginTop: 30 }} >Ways to plain with Uber</Text>
             <FlatList
-              data={filterData}
+              data={Category}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
